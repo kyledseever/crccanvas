@@ -1,19 +1,19 @@
 var gCanvas;
 var gContext;
 
+// all CRCs instantiated by the user
 var allCRCs = new Array();
+
+// current (focused) CRC; movement and toggle operations alter this CRC
 var currentCRC;
 
 var kKeyboardLeftArrow = 37;
 var kKeyboardUpArrow = 38;
 var kKeyboardRightArrow = 39;
 var kKeyboardDownArrow = 40;
+var kKeyboardAlt = 18;
 
-var kKeyboardEnter = 13;
-
-var kKeyboardG = 71;
-var kKeyboardS = 83;
-
+// CRC class
 function CRC(text) {
 	this.text = text;
 	this.x = 50;
@@ -238,15 +238,10 @@ function keyboardHandler(keyboardEvent) {
 			currentCRC.y += 10;
 			break;
 
-		// grow/shrink
-		/*
-		case kKeyboardG:
-			currentCRC.grow();
+		case kKeyboardAlt:
+			currentCRC.toggle();
+			// toggle takes care of redrawing for us
 			return;
-		case kKeyboardS:
-			currentCRC.shrink();
-			return;
-		*/
 
 		default:
 			return;
@@ -258,7 +253,7 @@ function keyboardHandler(keyboardEvent) {
 function getCanvasRelativeCoordinates(mouseEvent) {
 	var x; 
 	var y;
-	if (mouseEvent.pageX != undefined && mouseEvent.pageY != undefined) {
+	if (mouseEvent.pageX != null && mouseEvent.pageY != null) {
 		x = mouseEvent.pageX;
 		y = mouseEvent.pageY;
 	} else {
