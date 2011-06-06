@@ -307,10 +307,15 @@ function mouseHandler(mouseEvent) {
 	if (selectedCRC == null) return;
 
 	console.log("selected CRC: " + selectedCRC.text);
-	currentCRC.unselect();
-	currentCRC = selectedCRC;
-	currentCRC.select();
-	currentCRC.toggle();
+
+	if (selectedCRC == currentCRC) {
+		currentCRC.toggle();
+	} else {
+		currentCRC.unselect();
+		selectedCRC.select();
+		currentCRC = selectedCRC;
+		draw();
+	}
 }
 
 function clearCanvas() {
