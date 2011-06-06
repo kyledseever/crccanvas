@@ -10,7 +10,7 @@ Current features:
 - re-arrange currently selected card with mouse keys
 
 Bugs:
-- broke the transition effect when adding detailed view
+* broke the transition effect when adding detailed view [FIXED]
 - no bounds checking on canvas borders
 - possibly unclear selection method when clicking on cards that overlap 
 

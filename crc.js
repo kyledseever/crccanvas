@@ -34,8 +34,11 @@ function CRC(text) {
 	this.borderColor = "#000";
 
 	this.draw = function() {
-		if (this.shrunk()) return this.drawSimple();
 		if (this.grown()) return this.drawDetailed();
+
+		// if not grown, then it is either in simple mode or transitioning.
+		// in either case, use the simple presentation.
+		this.drawSimple();
 	}
 
 	this.drawSimple = function() {
