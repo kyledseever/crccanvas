@@ -6,7 +6,7 @@ Current features:
 - add new CRC cards
 - add responsibilities
 - add collaborators
-- 'simple' and 'detailed' views (mouse click on card)
+- 'simple' and 'detailed' views (mouse click on card or 'alt' key)
 - re-arrange currently selected card with mouse keys
 
 Bugs:
@@ -15,8 +15,11 @@ Bugs:
 - possibly unclear selection method when clicking on cards that overlap 
 
 Planned features:
-- make the currently selected card visually distinct
+- handle text wrapping (line break or elide)
+* make the currently selected card visually distinct [DONE]
 - automatic scaling to fit when many elements are added
 - lines or other association showing collaboration relationships
 - light heuristics on design quality (too many collaborators/responsibilites in one class?)
+- more intuitive UI to add elements
+- make the page not so offendingly hideous
 

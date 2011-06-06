@@ -30,6 +30,9 @@ function CRC(text) {
 	this.collaborators = new Array();
 	this.responsibilities = new Array();
 
+	// default border to black
+	this.borderColor = "#000";
+
 	this.draw = function() {
 		if (this.shrunk()) return this.drawSimple();
 		if (this.grown()) return this.drawDetailed();
@@ -38,24 +41,21 @@ function CRC(text) {
 	this.drawSimple = function() {
 		console.log("draw simple for: " + this.text);
 		// black outline
-		gContext.strokeStyle = "#000";
+		gContext.strokeStyle = this.borderColor;
 
 		// draw the rect
 		gContext.strokeRect(this.x, this.y, this.width, this.height);
 
-		gContext.font = "bold 12px sans-serif";
 		gContext.fillText(this.text, this.x+10, this.y+20);
 	}
 
 	this.drawDetailed = function() {
 		console.log("draw detailed for: " + this.text);
-		// black outline
-		gContext.strokeStyle = "#000";
+		gContext.strokeStyle = this.borderColor;
 
 		// draw the rect
 		gContext.strokeRect(this.x, this.y, this.width, this.height);
 
-		gContext.font = "bold 12px sans-serif";
 		gContext.fillText("class: " + this.text, this.x+10, this.y+20);
 
 		gContext.beginPath();
@@ -104,6 +104,14 @@ function CRC(text) {
 				currentYOffset += 15;
 			}
 		);
+	}
+
+	this.select = function() {
+		this.borderColor = "#5A5";
+	}
+
+	this.unselect = function() {
+		this.borderColor = "#000";
 	}
 
 	this.shrunk = function() {
@@ -160,6 +168,7 @@ function CRC(text) {
 			self.height = newDimensions.height;
 
 			// redraw everything to eliminate damage 
+			console.log("redraw all from transition");
 			draw();
 
 			if (doneDelegate(self)) window.clearInterval(interval);
@@ -192,13 +201,16 @@ function getElementValueAndReset(id) {
 function newCRC() {
 	var crcName = getElementValueAndReset("crc_name");
 	var crc = new CRC(crcName);
-	if (currentCRC != null)
+	if (currentCRC != null) {
+		currentCRC.unselect();
 		crc.moveRightOf(currentCRC);
+	}
 
 	currentCRC = crc;
-	currentCRC.draw();
+	currentCRC.select();
 
 	allCRCs.push(currentCRC);
+	draw();
 }
 
 function addResponsibility() {
@@ -292,12 +304,10 @@ function mouseHandler(mouseEvent) {
 	if (selectedCRC == null) return;
 
 	console.log("selected CRC: " + selectedCRC.text);
-	// if already selected, toggle it
-	if (currentCRC == selectedCRC) {
-		currentCRC.toggle();
-	}
-
+	currentCRC.unselect();
 	currentCRC = selectedCRC;
+	currentCRC.select();
+	currentCRC.toggle();
 }
 
 function clearCanvas() {
@@ -320,6 +330,9 @@ function setup() {
 	// get canvas and context
 	gCanvas = document.getElementById("crc_canvas");
 	gContext = gCanvas.getContext("2d");
+
+	// font style doesn't change, for now
+	gContext.font = "bold 12px sans-serif";
 
 	// draw initial outline
 	draw();
