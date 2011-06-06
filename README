@@ -1,0 +1,22 @@
+This is a really simple CRC (class-responsibility-collaborator) simulation using HTML5 canvas. Mostly, this 
+is just a way for me to familiarize myself with canvas and other HTML5 happenings, and to re-acquaint myself
+with my dear old friend, javascript.
+
+Current features:
+- add new CRC cards
+- add responsibilities
+- add collaborators
+- 'simple' and 'detailed' views (mouse click on card)
+- re-arrange currently selected card with mouse keys
+
+Bugs:
+- broke the transition effect when adding detailed view
+- no bounds checking on canvas borders
+- possibly unclear selection method when clicking on cards that overlap 
+
+Planned features:
+- make the currently selected card visually distinct
+- automatic scaling to fit when many elements are added
+- lines or other association showing collaboration relationships
+- light heuristics on design quality (too many collaborators/responsibilites in one class?)
+

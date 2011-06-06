@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>CRC Canvas</title>
+		<script type="text/javascript" src="keyboard.js"></script>
+		<script type="text/javascript" src="crc.js"></script>
+	</head>
+	<body onload="setup();">
+		<p>A simple <a href="http://en.wikipedia.org/wiki/Crc_card">CRC</a>
+		simulation using HTML5 canvas. Use the buttons to 
+		create new CRC cards, add responsilities, and add collaborators. 
+		Use the arrow keys to move the (currently selected) card around.
+		Use the mouse to select a new card or expand the current one.</p><br />
+
+		Name: <input id="crc_name" type="text" />
+		<button id="new_crc" type="button" onclick="newCRC();">New CRC Card</button>
+
+		Responsibility: <input id="crc_responsibility" type="text" />
+		<button id="new_crc_responsibility" type="button" 
+				onclick="addResponsibility();">Add responsibility</button>
+
+		Collaborator: <input id="crc_collaborator" type="text" />
+		<button id="new_crc_collaborator" type="button"
+				onclick="addCollaborator();">Add collaborator</button>
+
+		<br /><br />
+
+		<canvas id="crc_canvas" width="600" height="600">
+			Your browser does not support HTML5 canvas.
+		</canvas>
+
+	</body>
+</html>
