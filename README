@@ -22,4 +22,5 @@ Planned features:
 - light heuristics on design quality (too many collaborators/responsibilites in one class?)
 - more intuitive UI to add elements
 - make the page not so offendingly hideous
+- removing CRC cards, responsibilities, collaborators 
 

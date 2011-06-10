@@ -216,6 +216,15 @@ function newCRC() {
 	draw();
 }
 
+function deleteCRC() {
+	allCRCs = allCRCs.filter(function(crc) { return crc != currentCRC } );
+
+	currentCRC = allCRCs[allCRCs.length-1];
+	if (currentCRC != null) currentCRC.select();
+
+	draw();
+}
+
 function addResponsibility() {
 	var responsibility = getElementValueAndReset("crc_responsibility");
 
@@ -254,7 +263,7 @@ function keyboardHandler(keyboardEvent) {
 			break;
 
 		case kKeyboardAlt:
-			currentCRC.toggle();
+			if (currentCRC != null) currentCRC.toggle();
 			// toggle takes care of redrawing for us
 			return;
 
